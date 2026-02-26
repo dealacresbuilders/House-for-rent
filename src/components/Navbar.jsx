@@ -23,7 +23,7 @@ const Navbar = () => {
               href="/"
               className="text-xl sm:text-2xl font-bold tracking-wide text-[#DE1A58] hover:text-[#c4164c] transition duration-300"
             >
-              House for Rent Faridabad
+              House for Rent in Faridabad
             </Link>
 
             {/* ================= DESKTOP LINKS ================= */}

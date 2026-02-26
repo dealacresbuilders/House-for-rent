@@ -78,11 +78,11 @@ export default function FilterProperties({ area }) {
         {/* HEADING */}
         <div className="text-center mb-14">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Premium Shops in{" "}
+            Premium House For Rent in{" "}
             <span className="text-[#DE1A58]">{formattedArea}</span>
           </h1>
           <p className="text-gray-600 mt-3">
-            Verified commercial properties in prime business locations.
+             Residential properties in prime business locations.
           </p>
           <div className="w-20 h-1 bg-[#DE1A58] mx-auto mt-6 rounded-full"></div>
         </div>
@@ -149,7 +149,7 @@ export default function FilterProperties({ area }) {
                   <div className="flex flex-col items-center flex-1">
                     <span className="text-gray-500">TYPE</span>
                     <span className="font-semibold text-gray-900">
-                      {property.type || "Commercial"}
+                      {property.propertyCategory}
                     </span>
                   </div>
 
@@ -163,36 +163,47 @@ export default function FilterProperties({ area }) {
                 <div className="flex-1" />
 
                 {/* PRICE + LINK */}
-                <div className="mt-5 flex justify-between items-center">
+                {/* PRICE + ACTIONS */}
+<div className="mt-5 flex justify-between items-center flex-wrap gap-3">
 
-                  {property.price && property.price > 0 ? (
-                    <p className="text-lg font-bold text-[#DE1A58]">
-                      ₹ {property.price.toLocaleString("en-IN")}
-                    </p>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        setSelectedProperty(property.title);
-                        setOpen(true);
-                      }}
-                      className="bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
-                      text-white px-4 py-1.5 rounded-full text-xs
-                      hover:from-[#c4164c] hover:to-[#7a0c2f]
-                      transition shadow-md"
-                    >
-                      Price on Call
-                    </button>
-                  )}
+  {/* PRICE */}
+  {property.price && property.price > 0 ? (
+    <p className="text-lg font-bold text-[#DE1A58]">
+      ₹ {property.price.toLocaleString("en-IN")}
+    </p>
+  ) : (
+    <span className="text-sm font-semibold text-[#DE1A58]">
+      Price on Call
+    </span>
+  )}
 
-                  <Link
-                    href={`/properties/${property.slug}`}
-                    className="text-[#DE1A58] text-sm font-medium hover:underline"
-                  >
-                    View Details →
-                  </Link>
+  {/* BUTTON GROUP */}
+  <div className="flex items-center gap-3">
 
-                </div>
+    {/* ENQUIRE NOW BUTTON */}
+    <button
+      onClick={() => {
+        setSelectedProperty(property.title);
+        setOpen(true);
+      }}
+      className="bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
+      text-white px-4 py-2 rounded-lg text-sm
+      hover:from-[#c4164c] hover:to-[#7a0c2f]
+      transition shadow-md cursor-pointer"
+    >
+      Enquire Now
+    </button>
 
+    {/* VIEW DETAILS */}
+    <Link
+      href={`/properties/${property.slug}`}
+      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer"
+    >
+      View Details →
+    </Link>
+
+  </div>
+</div>
               </div>
             </div>
           ))}

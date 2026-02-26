@@ -6,11 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactPopup from "@/components/ContactPopup";
 import SidebarEnquiryForm from "./SidebarEnquiryForm";
+import Pagination from "@/components/Pagination";
 
 export default function Properties() {
   const { properties, loading, error } = useProperty();
   const [open, setOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState("");
+
+  // ✅ Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 150;
 
   const formatArea = (area, unit) => {
     if (!area) return "N/A";
@@ -19,6 +24,25 @@ export default function Properties() {
     const formattedUnit =
       unit.charAt(0).toUpperCase() + unit.slice(1).toLowerCase();
     return `${formattedNumber} ${formattedUnit}`;
+  };
+
+  // ✅ Pagination Logic
+  const totalItems = properties?.length || 0;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProperties = properties?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+
+    // Smooth Scroll Top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   if (loading) {
@@ -58,11 +82,11 @@ export default function Properties() {
 
   return (
     <section className="bg-[#fdf2f6] px-4 py-16">
-      
+
       {/* PAGE HEADING */}
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Premium Commercial Properties in Faridabad
+        <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
+          Premium Residential House For Rent Properties in Faridabad
         </h1>
 
         <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
@@ -77,7 +101,8 @@ export default function Properties() {
 
         {/* LEFT SIDE */}
         <div className="lg:col-span-2 space-y-8">
-          {properties.map((property) => (
+
+          {currentProperties.map((property) => (
             <div
               key={property._id}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300 overflow-hidden"
@@ -128,7 +153,7 @@ export default function Properties() {
                         Type:
                       </span>
                       <span className="font-semibold text-gray-900">
-                       {property.propertyCategory}
+                        {property.propertyCategory}
                       </span>
                     </div>
 
@@ -156,10 +181,10 @@ export default function Properties() {
                   <div className="flex flex-col md:flex-row justify-between items-center mt-5 gap-4">
 
                     <p className="text-2xl font-bold text-[#DE1A58]">
-  {property.price && property.price > 0
-    ? `₹ ${property.price.toLocaleString("en-IN")}`
-    : "Price on Call"}
-</p>
+                      {property.price && property.price > 0
+                        ? `₹ ${property.price.toLocaleString("en-IN")}`
+                        : "Price on Call"}
+                    </p>
 
                     <div className="flex gap-3 w-full md:w-auto">
 
@@ -194,6 +219,15 @@ export default function Properties() {
               </div>
             </div>
           ))}
+
+          {/* ✅ PAGINATION */}
+          <Pagination
+            totalItems={totalItems}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+
         </div>
 
         {/* RIGHT SIDE */}

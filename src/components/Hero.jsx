@@ -80,7 +80,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="text-lg max-w-2xl text-gray-300 leading-relaxed">
-             Finding a house for rent in Faridabad is now simpler, faster, and more reliable than ever. Faridabad has become one of the most preferred residential destinations in Delhi-NCR, offering a perfect mix of comfort, connectivity, and affordability. Whether you are a working professional, a growing family, or someone relocating for better opportunities, this city has rental homes that match every lifestyle and budget.
+                   Finding a house for rent in Faridabad is now simpler, faster, and more reliable than ever. Faridabad has become one of the most preferred residential destinations in Delhi-NCR, offering a perfect mix of comfort, connectivity, and affordability. Whether you are a working professional, a growing family, or someone relocating for better opportunities, this city has rental homes that match every lifestyle and budget.<br/><br/>
       Our platform helps you discover verified and genuine listings, so your search for a house for rent in Faridabad stays transparent and stress-free. From independent houses to spacious builder floors in prime sectors, we bring you homes that feel right from day one.
     
           </p>

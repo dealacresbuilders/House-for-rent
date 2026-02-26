@@ -3,18 +3,119 @@
 import Link from "next/link";
 
 const locations = [
-  "Sector 70, Neharpar",
-  "Sector 86",
-  "Ashoka Enclave",
-  "Sector 82",
-  "Sector 21C",
-  "Sector 83",
-  "Sector 21A",
-  "Sector 9",
+  "Adarsh Nagar, Faridabad",
+  "Anangpur, Faridabad",
+  "Ankhir, Faridabad",
+  "Ashoka Enclave Part 1, Faridabad",
+  "Ashoka Enclave Part 3, Faridabad",
+  "BPTP, Faridabad",
+  "Badkhal, Faridabad",
+  "Badshahpur, Faridabad",
+  "Ballabhgarh, Faridabad",
+  "Bathola, Faridabad",
+  "Bhadana Chowk, Faridabad",
+  "Bharat Colony, Faridabad",
+  "Bhatta Colony, Faridabad",
+  "Bhikam Colony, Faridabad",
+  "Bhim Sen Colony, Faridabad",
+  "Bhopani Village, Faridabad",
+  "Block A Sector 7, Faridabad",
+  "Block B, Sector 7, Faridabad",
+  "Block E New Industrial Twp 3, Faridabad",
+  "Chawla Colony, Faridabad",
+  "Dabua Colony, Faridabad",
+  "Dayalpur, Faridabad",
+  "Eros Garden, Faridabad",
+  "Gandhi Colony, Faridabad",
+  "Greenfield Colony, Faridabad",
+  "Greenfields Colony Block C, Faridabad",
+  "Housing Board Duplex, Faridabad",
+  "Indira Enclave, Faridabad",
+  "Indra Complex Colony, Faridabad",
+  "Jawahar Colony, Faridabad",
+  "Jeevan Nagar, Faridabad",
+  "Mewla Maharajpur, Faridabad",
+  "Mohna, Faridabad",
+  "NIT 5, Faridabad",
+  "NIT, Faridabad",
+  "Nehar Par, Faridabad",
+  "New Baselwa Colony, Faridabad",
+  "Pali Village, Faridabad",
+  "Palla Number 1, Faridabad",
+  "Palwali, Faridabad",
+  "Rajeev Colony, Faridabad",
+  "Rajendra Colony, Faridabad",
+  "Roshan Nagar, Faridabad",
+  "SGM Nagar, Faridabad",
+  "Sainik Colony, Faridabad",
+  "Sanjay Colony, Faridabad",
+  "Sanjay Gandhi Memorial Nagar, Faridabad",
+  "Sarai Khawaja Village, Faridabad",
+  "Sector 11, Faridabad",
+  "Sector 11C, Faridabad",
+  "Sector 14, Faridabad",
+  "Sector 15, Faridabad",
+  "Sector 15A, Faridabad",
+  "Sector 16, Faridabad",
+  "Sector 16A, Faridabad",
+  "Sector 17, Faridabad",
+  "Sector 18, Faridabad",
+  "Sector 19, Faridabad",
+  "Sector 2, Faridabad",
+  "Sector 21, Faridabad",
+  "Sector 21A, Faridabad",
+  "Sector 21B, Faridabad",
+  "Sector 21C, Faridabad",
+  "Sector 21D, Faridabad",
+  "Sector 22, Faridabad",
+  "Sector 23, Faridabad",
+  "Sector 28, Faridabad",
+  "Sector 3, Faridabad",
+  "Sector 30, Faridabad",
+  "Sector 31, Faridabad",
+  "Sector 37, Faridabad",
+  "Sector 42, Faridabad",
+  "Sector 45, Faridabad",
+  "Sector 46, Faridabad",
+  "Sector 48, Faridabad",
+  "Sector 50, Faridabad",
+  "Sector 62, Faridabad",
+  "Sector 64, Faridabad",
+  "Sector 65, Faridabad",
+  "Sector 7, Faridabad",
+  "Sector 70, Faridabad",
+  "Sector 75, Faridabad",
+  "Sector 76, Faridabad",
+  "Sector 77, Faridabad",
+  "Sector 78, Faridabad",
+  "Sector 7A, Faridabad",
+  "Sector 8, Faridabad",
+  "Sector 81, Faridabad",
+  "Sector 83, Faridabad",
+  "Sector 84, Faridabad",
+  "Sector 85, Faridabad",
+  "Sector 86, Faridabad",
+  "Sector 88, Faridabad",
+  "Sector 89, Faridabad",
+  "Sector 9, Faridabad",
+  "Sector 91, Faridabad",
+  "Sector-143, Faridabad",
+  "Sehatpur, Faridabad",
+  "Shiv Colony, Faridabad",
+  "Shiv Durga Vihar, Faridabad",
+  "Sikri, Faridabad",
+  "Sohna Road, Faridabad",
+  "Surya Nagar Phase 1, Faridabad",
+  "Surya Vihar Part 2, Faridabad",
+  "Tilpat, Faridabad",
+  "Vedram Colony, Faridabad",
+  "Parvatiya Colony, Faridabad"
 ];
 
+// ✅ CLEAN SLUG (Remove City)
 const createSlug = (location) => {
   return location
+    .replace(", Faridabad", "")
     .toLowerCase()
     .replace(/,/g, "")
     .replace(/\s+/g, "-");
@@ -25,42 +126,58 @@ export default function Footer() {
     <footer className="bg-[#0f0f1a] pt-16 pb-8 px-4 border-t border-[#1c1c2b]">
       <div className="max-w-7xl mx-auto">
 
-        {/* BRAND */}
         <div className="mb-10">
           <h2 className="text-2xl font-bold text-white">
-            House for Rent in{" "}
-            <span className="text-[#DE1A58]">Faridabad</span>
+            House for Rent in <span className="text-[#DE1A58]">Faridabad</span>
           </h2>
 
           <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
-            Discover premium commercial properties and high-return investment 
-            opportunities across prime sectors of Faridabad.
+            Discover premium rental homes and high-value residential opportunities across prime sectors of Faridabad.
           </p>
         </div>
 
         {/* LOCATIONS */}
-        <div className="mb-10">
-          <h3 className="text-lg font-semibold text-white mb-6">
-            Popular Locations
-          </h3>
+         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-4 text-sm overflow-visible">
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 text-sm">
             {locations.map((loc, index) => (
-              <Link
-                key={index}
-                href={`${createSlug(loc)}`}
-                className="text-gray-400 hover:text-[#DE1A58] transition duration-300"
-              >
-                {loc}, Faridabad
-              </Link>
+              <div key={index} className="relative group overflow-visible">
+
+                <Link
+                  href={`/${createSlug(loc)}`}
+                  className="block truncate text-gray-400 hover:text-[#DE1A58] transition duration-300"
+                >
+                 House For Rent {loc}
+                </Link>
+
+                {/* TOOLTIP */}
+                <div
+                  className="
+                  absolute left-1/2 -translate-x-1/2 bottom-full mb-2
+                  opacity-0 scale-95
+                  group-hover:opacity-100 group-hover:scale-100
+                  transition-all duration-200
+                  whitespace-nowrap
+                  bg-[#1a1333] text-white text-xs
+                  px-3 py-1.5 rounded-md
+                  shadow-lg border border-[#DE1A58]/40
+                  z-[9999]
+                  pointer-events-none
+                "
+                >
+                 House For Rent {loc}
+                </div>
+
+              </div>
             ))}
+
           </div>
         </div>
+
 
         {/* BOTTOM */}
         <div className="border-t border-[#1c1c2b] pt-6 flex flex-col md:flex-row items-center justify-between">
           <p className="text-sm text-gray-500 text-center md:text-left">
-            © {new Date().getFullYear()} House For Rent In Faridabad.com — All Rights Reserved.
+            © {new Date().getFullYear()} House For Rent In Faridabad.com
           </p>
 
           <Link
@@ -73,7 +190,7 @@ export default function Footer() {
           </Link>
         </div>
 
-      </div>
+      
     </footer>
   );
 }
