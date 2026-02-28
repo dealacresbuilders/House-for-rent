@@ -22,7 +22,7 @@ export default function PropertyCard({ property }) {
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col h-full">
 
         {/* IMAGE */}
-        <div className="relative w-full h-48 overflow-hidden">
+        <div className="relative w-full h-44 overflow-hidden">
           <Image
             src={property?.media?.url || "/no-image.png"}
             alt={property.title}

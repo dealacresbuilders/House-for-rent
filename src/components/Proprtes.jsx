@@ -7,7 +7,7 @@ import Link from "next/link";
 import ContactPopup from "@/components/ContactPopup";
 import SidebarEnquiryForm from "./SidebarEnquiryForm";
 import Pagination from "@/components/Pagination";
-
+import BHKFilterButtons from "@/components/BHKFilterButtons";
 export default function Properties() {
   const { properties, loading, error } = useProperty();
   const [open, setOpen] = useState(false);
@@ -84,17 +84,20 @@ export default function Properties() {
     <section className="bg-[#fdf2f6] px-4 py-16">
 
       {/* PAGE HEADING */}
-      <div className="max-w-7xl mx-auto text-center mb-12">
+      <div className="max-w-7xl mx-auto  mb-12">
         <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
           Premium Residential House For Rent Properties in Faridabad
         </h1>
 
-        <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
+        <p className="mt-4 text-gray-500 max-w-2xl ">
           Explore high-potential shops and commercial spaces available for rent 
           and investment across prime locations in Faridabad.
         </p>
 
-        <div className="w-20 h-1 bg-[#DE1A58] mx-auto mt-6 rounded-full"></div>
+        <div className="w-20 h-1 bg-[#DE1A58]  mt-6 rounded-full"></div>
+         <div className="mt-8">
+    <BHKFilterButtons />
+  </div>
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">

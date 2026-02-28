@@ -1,16 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { useProperty } from "@/contextapi/propertycontext";
 import Image from "next/image";
 import Link from "next/link";
-import { useProperty } from "@/contextapi/propertycontext";
 import ContactPopup from "@/components/ContactPopup";
 
 export default function FilterProperties({ area }) {
+
+  const { data, properties, loading2, error2, setLocality } = useProperty();
+
+  // ✅ SAFETY FIX (null crash prevent)
+  const safeData = Array.isArray(data) ? data : [];
+  const safeProperties = Array.isArray(properties) ? properties : [];
+
   const [open, setOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState("");
-
-  const { data, loading2, error2, setLocality } = useProperty();
 
   const formattedArea = area
     ?.replace(/-/g, " ")
@@ -20,16 +25,42 @@ export default function FilterProperties({ area }) {
     if (formattedArea) {
       setLocality(formattedArea);
     }
-  }, [formattedArea]);
+  }, [formattedArea, setLocality]);
 
   const formatArea = (area, unit) => {
     if (!area) return "N/A";
     const formattedNumber = Number(area).toLocaleString("en-IN");
     if (!unit) return formattedNumber;
-    const formattedUnit =
-      unit.charAt(0).toUpperCase() + unit.slice(1).toLowerCase();
-    return `${formattedNumber} ${formattedUnit}`;
+    return `${formattedNumber} ${unit}`;
   };
+
+  /* ================= 150 CARD LOGIC ================= */
+
+  const finalData = useMemo(() => {
+
+    // Agar full domain data hi nahi hai
+    if (safeProperties.length === 0) {
+      return safeData;
+    }
+
+    // Filtered IDs
+    const filteredIds = new Set(
+      safeData.map((p) => p._id)
+    );
+
+    // Remaining domain properties
+    const remaining = safeProperties.filter(
+      (p) => !filteredIds.has(p._id)
+    );
+
+    const needed = 150 - safeData.length;
+
+    return [
+      ...safeData,
+      ...remaining.slice(0, needed > 0 ? needed : 0)
+    ].slice(0, 150);
+
+  }, [safeData, safeProperties]);
 
   /* ================= LOADING ================= */
   if (loading2) {
@@ -49,7 +80,7 @@ export default function FilterProperties({ area }) {
   /* ================= ERROR ================= */
   if (error2) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-white to-pink-50">
+      <div className="min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-pink-50 to-pink-50">
         <p className="text-red-500 text-lg">
           Something went wrong while loading properties.
         </p>
@@ -60,7 +91,7 @@ export default function FilterProperties({ area }) {
   /* ================= EMPTY ================= */
   if (!data || data.length === 0) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-gradient-to-b from-white to-pink-50">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-gradient-to-b from-pink-50 to-pink-50">
         <h2 className="text-2xl font-semibold text-gray-800">
           No Shops Available in {formattedArea}
         </h2>
@@ -72,25 +103,15 @@ export default function FilterProperties({ area }) {
   }
 
   return (
-    <section className="bg-[#fdf2f6] px-4 py-12">
+    <section className="bg-[#fdf2f6] px-4 py-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* HEADING */}
-        <div className="text-center mb-14">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Premium House For Rent in{" "}
-            <span className="text-[#DE1A58]">{formattedArea}</span>
-          </h1>
-          <p className="text-gray-600 mt-3">
-             Residential properties in prime business locations.
-          </p>
-          <div className="w-20 h-1 bg-[#DE1A58] mx-auto mt-6 rounded-full"></div>
-        </div>
+       
 
         {/* GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1  gap-4">
 
-          {data.map((property) => (
+          {finalData.map((property) => (
             <div
               key={property._id}
               className="bg-white rounded-2xl border border-pink-100
@@ -99,7 +120,7 @@ export default function FilterProperties({ area }) {
             >
 
               {/* IMAGE */}
-              <div className="relative md:w-2/5 aspect-[4/3] md:aspect-auto overflow-hidden">
+              <div className="relative md:w-[35%] aspect-[4/3] md:aspect-auto overflow-hidden">
                 {property?.media?.url ? (
                   <Image
                     src={property.media.url}
