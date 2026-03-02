@@ -13,16 +13,16 @@ export default function AboutPage() {
           {/* LEFT */}
           <div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Trusted Commercial Property Platform in{" "}
+              About{" "}
               <span className="text-[#DE1A58]">
-                Faridabad
+                House for Rent in Faridabad
               </span>
             </h1>
 
             <p className="text-gray-600 mt-6 leading-relaxed max-w-xl">
-              We connect serious investors and business owners with verified
-              commercial shops in prime locations across Faridabad.
-              Transparent listings. Real opportunities. Smart investments.
+              From independent floors to fully furnished homes — find a house 
+              for rent in Faridabad that feels less like a compromise and more 
+              like exactly what you were looking for.
             </p>
 
             <div className="mt-8 flex gap-4">
@@ -32,7 +32,7 @@ export default function AboutPage() {
                 bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
                 text-white shadow-lg hover:opacity-90 transition"
               >
-                Explore Properties
+                Find a House for Rent Now
               </Link>
 
               <Link
@@ -46,38 +46,59 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* RIGHT HIGHLIGHT CARD */}
+          {/* RIGHT HIGHLIGHT CARD (STATS) */}
           <div className="bg-white border border-pink-100 rounded-3xl p-12 shadow-xl">
 
             <h3 className="text-4xl font-bold text-[#DE1A58]">
-              500+
+              1800+
             </h3>
             <p className="text-gray-600 mt-2">
-              Verified Commercial Listings
+              Houses & Floors Listed for Rent
             </p>
 
             <div className="h-px bg-pink-200 my-8"></div>
 
             <h3 className="text-4xl font-bold text-[#DE1A58]">
-              1000+
+              4000+
             </h3>
             <p className="text-gray-600 mt-2">
-              Happy Investors & Buyers
+              Tenants & Families Successfully Housed
+            </p>
+
+            <div className="h-px bg-pink-200 my-8"></div>
+
+            <h3 className="text-4xl font-bold text-[#DE1A58]">
+              65+
+            </h3>
+            <p className="text-gray-600 mt-2">
+              Localities Covered Across Faridabad
             </p>
 
           </div>
         </div>
 
         {/* ================= OUR MISSION ================= */}
-        <div className="text-center max-w-3xl mx-auto mb-28">
+        <div className="text-center max-w-4xl mx-auto mb-28">
           <h2 className="text-3xl font-bold text-gray-900">
             Our Mission
           </h2>
 
-          <p className="text-gray-600 mt-6 leading-relaxed">
-            Our mission is to simplify commercial property buying by providing
-            accurate listings, transparent pricing, and verified investment
-            opportunities in high-growth commercial hubs of Faridabad.
+          <p className="text-gray-600 mt-6 leading-relaxed text-lg">
+            Renting a house is a very personal decision — and yet most platforms 
+            treat it like a simple transaction. We think differently. Our mission 
+            is to give every tenant, every relocating family, and every working 
+            professional moving to Faridabad a platform that genuinely understands 
+            what they need — a clean, verified, and honest listing of houses 
+            available for rent so they can find the right home without the stress, 
+            the wasted trips, or the broker pressure.
+          </p>
+
+          <p className="text-gray-600 mt-6 leading-relaxed text-lg">
+            From independent floors and builder floors in established localities 
+            like NIT Faridabad and Sector 15, 16, 21 to spacious furnished and 
+            semi-furnished homes in fast-growing areas like Neharpar and Ballabhgarh — 
+            we cover the full spectrum of rental housing across Faridabad so every 
+            tenant finds a home that truly fits their life.
           </p>
         </div>
 
@@ -92,43 +113,38 @@ export default function AboutPage() {
 
             {/* CARD 1 */}
             <div className="bg-white rounded-2xl p-10 border border-pink-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300">
-              <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mb-6">
-                <div className="w-4 h-4 bg-[#DE1A58] rounded-full"></div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Verified Listings
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Houses, Floors & More
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Every property is verified to ensure safe and reliable
-                investment decisions.
+                Independent houses, builder floors, independent floors, furnished 
+                and semi-furnished options — we list every type of rental home so 
+                you never have to settle for something that does not quite fit.
               </p>
             </div>
 
             {/* CARD 2 */}
             <div className="bg-white rounded-2xl p-10 border border-pink-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300">
-              <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mb-6">
-                <div className="w-4 h-4 bg-[#DE1A58] rounded-full"></div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Prime Locations
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Verified & Honestly Listed
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                We focus on high-demand sectors with strong rental yield and
-                resale potential.
+                Every rental listing on our platform is verified for accuracy 
+                and current availability — so you only spend your time on homes 
+                that are genuinely ready to move into right now.
               </p>
             </div>
 
             {/* CARD 3 */}
             <div className="bg-white rounded-2xl p-10 border border-pink-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300">
-              <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mb-6">
-                <div className="w-4 h-4 bg-[#DE1A58] rounded-full"></div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Transparent Process
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Owners, Find Reliable Tenants Fast
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Clear pricing, no hidden charges, and full guidance from inquiry
-                to final purchase.
+                Post your house, floor, or furnished property in minutes and 
+                reach thousands of genuine tenants — families, professionals, 
+                and relocating individuals — actively searching for homes in 
+                Faridabad today.
               </p>
             </div>
 
@@ -139,12 +155,13 @@ export default function AboutPage() {
         <div className="bg-gradient-to-r from-[#DE1A58] to-[#a10f3f] rounded-3xl p-16 text-center text-white shadow-2xl">
 
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Secure Your Next Investment?
+            Your Next Home in Faridabad is Already Waiting for You.
           </h2>
 
           <p className="text-pink-100 mb-10 max-w-2xl mx-auto">
-            Discover premium commercial shops in Faridabad and start building
-            long-term returns today.
+            Browse verified houses, independent floors, and furnished rentals 
+            across Faridabad's most sought-after localities — and find a home 
+            you will actually be happy coming back to every day.
           </p>
 
           <Link
@@ -152,7 +169,7 @@ export default function AboutPage() {
             className="bg-white text-[#DE1A58] px-8 py-3 rounded-full font-semibold
             hover:bg-gray-100 transition shadow-md"
           >
-            Browse Properties
+            Find a House for Rent Now
           </Link>
 
         </div>
