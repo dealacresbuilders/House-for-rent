@@ -21,6 +21,15 @@ const Navbar = () => {
             {/* LOGO */}
             <Link
               href="/"
+  onClick={(e) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault(); // route reload prevent
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }}
               className="text-xl sm:text-2xl font-bold tracking-wide text-[#DE1A58] hover:text-[#c4164c] transition duration-300"
             >
               House for Rent in Faridabad
