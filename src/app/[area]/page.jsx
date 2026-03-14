@@ -30,18 +30,17 @@ export default async function Page({ params }) {
           <div className="w-20 h-1 bg-[#DE1A58] mt-6 rounded-full"></div>
         </div>
 
-        {/* 🔥 MAIN GRID */}
+       
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-          {/* LEFT SIDE */}
+          
           <div className="lg:col-span-8 space-y-6">
   <FilterProperties area={area} />
 
-  {/* Only show Properties if area not selected */}
-   {/* <Proprtes /> */}
+  
 </div>
 
-          {/* RIGHT SIDE */}
+         
           <div className="lg:col-span-4">
             <div className="sticky top-24">
               <SidebarEnquiryForm />
