@@ -1,40 +1,31 @@
-import React from 'react'
+import React from "react";
+import BlogList from "./BlogList";
 
-import { headers } from "next/headers";
-import BlogList from './BlogList';
 export async function generateMetadata() {
-  const h = await headers();
-  const domain = h.get("host") || "localhost";
-
-  // www remove
-  const cleanDomain = domain.replace(/^www\./, "");
-
   return {
-    title: "Property & Real Estate Blogs | Trusted Property Dealer",
+    title: "House for Rent Blogs | Rental Tips, Property Guides & Investment Ideas",
     description:
-      "Read latest property and real estate blogs. Get house buying tips, flat rent guides, plot investment ideas and property news.",
+      "Explore house for rent blogs with expert tips on renting homes, flats, and properties. Learn rental agreements, pricing trends, and smart property investment ideas.",
     keywords: [
-      "property blogs",
-      "real estate blogs",
-      "house buying tips",
+      "house for rent blogs",
+      "rental property tips",
       "flat rent guide",
-      "plot investment",
-      "property news"
+      "home rental advice",
+      "property investment ideas",
+      "real estate rental blogs"
     ],
     alternates: {
-      canonical: `https://${cleanDomain}/blog`
+      canonical: "www.houseforrentinfaridabad.com/blog", // 🔥 apna final domain yaha set kar dena
     },
-  }
+  };
 }
-
-
 
 const page = () => {
   return (
     <div className="min-h-screen bg-pink-50">
-    <BlogList/>
+      <BlogList />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

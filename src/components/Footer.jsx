@@ -148,7 +148,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-6">
             Popular Locations
           </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-4 text-sm overflow-visible">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-4 text-sm overflow-visible">
           {visibleLocations.map((loc, index) => (
             <div key={index} className="relative group overflow-visible">
 
