@@ -112,8 +112,8 @@ const handlePageChange = (page) => {
               key={property._id}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300 overflow-hidden"
             >
-              <div className="flex flex-col md:flex-row">
-
+              
+<div className="flex flex-col md:flex-row">
                 {/* IMAGE */}
                 <div className="relative w-full md:w-[35%] h-48 md:h-auto">
                   <Image
@@ -183,7 +183,7 @@ const handlePageChange = (page) => {
                   <div className="flex-1" />
 
                   {/* PRICE + BUTTONS */}
-                  <div className="flex flex-col gap-3 mt-4">
+                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mt-4 gap-3 md:gap-4">
 
                     <p className="text-lg sm:text-2xl font-bold text-[#DE1A58]">
                       {property.price && property.price > 0
