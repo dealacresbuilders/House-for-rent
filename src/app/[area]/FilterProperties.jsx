@@ -103,10 +103,10 @@ export default function FilterProperties({ area }) {
   }
 
   return (
-    <section className="bg-[#fdf2f6] px-4 py-8">
+    <section className="bg-[#fdf2f6] px-2 py-8">
       <div className="max-w-7xl mx-auto">
 
-       
+
 
         {/* GRID */}
         <div className="grid grid-cols-1  gap-4">
@@ -120,7 +120,7 @@ export default function FilterProperties({ area }) {
             >
 
               {/* IMAGE */}
-              <div className="relative md:w-[35%] aspect-[4/3] md:aspect-auto overflow-hidden">
+              <div className="relative md:w-[45%] aspect-[4/3] md:aspect-auto overflow-hidden">
                 {property?.media?.url ? (
                   <Image
                     src={property.media.url}
@@ -136,13 +136,29 @@ export default function FilterProperties({ area }) {
               </div>
 
               {/* CONTENT */}
-              <div className="p-6 flex-1 flex flex-col">
+              <div className="p-6 flex flex-col w-full min-w-0">
 
-                <h2 className="text-base font-semibold text-gray-900 leading-snug">
+                <h2 className="text-lg font-bold text-gray-900 overflow-hidden md:whitespace-nowrap md:text-ellipsis">
                   {property.title}
                 </h2>
 
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-gray-500 mt-1 flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 21s-6-5.33-6-10a6 6 0 1112 0c0 4.67-6 10-6 10z"
+                    />
+                    <circle cx="12" cy="11" r="2.5" />
+                  </svg>
+
                   {property.locality}
                 </p>
 
@@ -176,55 +192,55 @@ export default function FilterProperties({ area }) {
 
                 </div>
 
-                <p className="text-sm text-gray-600 mt-3 line-clamp-2">
+                {/* <p className="text-sm text-gray-600 mt-3 line-clamp-2">
                   {property.description2 ||
                     "Prime commercial shop ideal for business and long-term investment."}
-                </p>
+                </p> */}
 
                 <div className="flex-1" />
 
                 {/* PRICE + LINK */}
                 {/* PRICE + ACTIONS */}
-<div className="mt-5 flex justify-between items-center flex-wrap gap-3">
+                <div className="mt-5 flex justify-between items-center flex-wrap gap-3">
 
-  {/* PRICE */}
-  {property.price && property.price > 0 ? (
-    <p className="text-lg font-bold text-[#DE1A58]">
-      ₹ {property.price.toLocaleString("en-IN")}
-    </p>
-  ) : (
-    <span className="text-sm font-semibold text-[#DE1A58]">
-      Price on Call
-    </span>
-  )}
+                  {/* PRICE */}
+                  {property.price && property.price > 0 ? (
+                    <p className="text-lg font-bold text-[#DE1A58]">
+                      ₹ {property.price.toLocaleString("en-IN")}
+                    </p>
+                  ) : (
+                    <span className="text-sm font-semibold text-[#DE1A58]">
+                      Price on Call
+                    </span>
+                  )}
 
-  {/* BUTTON GROUP */}
-  <div className="flex items-center gap-3">
+                  {/* BUTTON GROUP */}
+                  <div className="flex items-center gap-3">
 
-    {/* ENQUIRE NOW BUTTON */}
-    <button
-      onClick={() => {
-        setSelectedProperty(property.title);
-        setOpen(true);
-      }}
-      className="bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
+                    {/* ENQUIRE NOW BUTTON */}
+                    <button
+                      onClick={() => {
+                        setSelectedProperty(property.title);
+                        setOpen(true);
+                      }}
+                      className="bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
       text-white px-4 py-2 rounded-lg text-sm
       hover:from-[#c4164c] hover:to-[#7a0c2f]
       transition shadow-md cursor-pointer"
-    >
-      Enquire Now
-    </button>
+                    >
+                      Enquire Now
+                    </button>
 
-    {/* VIEW DETAILS */}
-    <Link
-      href={`/properties/${property.slug}`}
-      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer"
-    >
-      View Details →
-    </Link>
+                    {/* VIEW DETAILS */}
+                    <Link
+                      href={`/properties/${property.slug}`}
+                      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer"
+                    >
+                      View Details →
+                    </Link>
 
-  </div>
-</div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
