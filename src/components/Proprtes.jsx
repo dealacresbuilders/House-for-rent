@@ -110,12 +110,12 @@ const handlePageChange = (page) => {
           {currentProperties.map((property) => (
             <div
               key={property._id}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300 overflow-hidden"
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300 overflow-hidden md:h-[250px]"
             >
               
-<div className="flex flex-col md:flex-row">
+<div className="flex flex-col md:flex-row h-full">
                 {/* IMAGE */}
-                <div className="relative w-full md:w-[35%] h-48 md:h-auto">
+                <div className="relative w-full md:w-[45%] h-[250px] ">
                   <Image
                     src={property?.media?.url || "/no-image.png"}
                     alt={property.title}
@@ -129,13 +129,29 @@ const handlePageChange = (page) => {
                 </div>
 
                 {/* CONTENT */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col">
+               <div className="p-6 flex flex-col w-full min-w-0">
+  
+  <h2 className="text-lg font-bold text-gray-900 overflow-hidden md:whitespace-nowrap md:text-ellipsis">
+    {property.title}
+  </h2>
 
-                  <h2 className="text-base sm:text-lg font-semibold text-gray-900">
-                    {property.title}
-                  </h2>
+                  <p className="text-sm text-gray-500 mt-1 flex items-center gap-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 21s-6-5.33-6-10a6 6 0 1112 0c0 4.67-6 10-6 10z"
+                      />
+                      <circle cx="12" cy="11" r="2.5" />
+                    </svg>
 
-                  <p className="text-xs sm:text-sm text-gray-500 mt-1">
                     {property.locality}
                   </p>
 
@@ -175,10 +191,10 @@ const handlePageChange = (page) => {
 
                   </div>
 
-                  <p className="text-xs sm:text-sm text-gray-500 mt-3 line-clamp-2 leading-relaxed">
+                  {/* <p className="text-xs sm:text-sm text-gray-500 mt-3 line-clamp-2 leading-relaxed">
                     {property.description2 ||
                       "High-value commercial asset offering strong rental potential and long-term growth."}
-                  </p>
+                  </p> */}
 
                   <div className="flex-1" />
 
