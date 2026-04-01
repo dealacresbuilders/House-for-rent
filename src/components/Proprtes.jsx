@@ -82,6 +82,7 @@ const handlePageChange = (page) => {
 
   return (
     <section  ref={topRef}
+    id="locations"
      className="bg-[#fdf2f6] px-3 sm:px-4 py-12 sm:py-16">
 
       {/* HEADING */}
