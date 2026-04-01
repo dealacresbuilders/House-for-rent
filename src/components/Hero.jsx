@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-
+import Link from "next/link";
 const HeroSection = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -84,6 +84,15 @@ const HeroSection = () => {
       Our platform helps you discover verified and genuine listings, so your search for a house for rent in Faridabad stays transparent and stress-free. From independent houses to spacious builder floors in prime sectors, we bring you homes that feel right from day one.
     
           </p>
+          <Link href="/house-for-rent">
+  <button className="relative overflow-hidden bg-[#DE1A58] text-white px-6 py-3 rounded-xl font-semibold shadow-md transition-all duration-300 hover:bg-[#DE1A58] hover:shadow-xl hover:scale-105 mt-4">
+    
+    <span className="relative z-10">Learn More</span>
+
+    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] hover:translate-x-[100%] transition duration-700"></span>
+  
+  </button>
+</Link>
         </div>
 
         {/* RIGHT GLASS FORM */}
