@@ -29,14 +29,14 @@ export default function PropertyTypePage() {
   const propertySectionRef = useRef(null);
 
   /* ================= FETCH ================= */
-
+const bhk = propertyType?.split("-")[0];
   useEffect(() => {
 
-    if (propertyType) {
-      fetchPropertiesByType(`${propertyType} BHK`,1);
+    if (bhk) {
+      fetchPropertiesByType(`${bhk} BHK`, 1);
     }
 
-  }, [propertyType]);
+  }, [bhk]);
 
 
   /* ================= SCROLL TOP AFTER LOAD ================= */
@@ -90,7 +90,7 @@ export default function PropertyTypePage() {
         </div>
 
         <p className="mt-5 text-sm font-medium text-gray-600 tracking-wide">
-          Loading {propertyType} BHK Listings...
+          Loading {bhk} BHK Listings...
         </p>
 
       </div>
@@ -117,11 +117,11 @@ export default function PropertyTypePage() {
       <div className="max-w-7xl mx-auto mb-12">
 
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-          {propertyType} BHK Residential Houses For Rent in Faridabad
+          {bhk} BHK Residential Houses For Rent in Faridabad
         </h1>
 
         <p className="mt-4 text-gray-500 max-w-2xl">
-          Explore premium {propertyType} BHK houses available across prime
+          Explore premium {bhk} BHK houses available across prime
           locations in Faridabad. Find your ideal rental home with us today.
         </p>
 

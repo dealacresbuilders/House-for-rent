@@ -48,7 +48,7 @@ export async function generateSitemap() {
 
     return `
       <url>
-        <loc>${baseUrl}/${slug}</loc>
+        <loc>${baseUrl}/house-for-rent-in${slug}</loc>
       </url>
     `;
   });
