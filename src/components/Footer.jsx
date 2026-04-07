@@ -26,7 +26,7 @@ export default function Footer() {
     <footer className="bg-[#0f0f1a] pt-16 pb-8 px-4 border-t border-[#1c1c2b]">
       <div className="max-w-7xl mx-auto">
 
-        {/* <div className="mb-10">
+        <div className="mb-10">
           <h2 className="text-2xl font-bold text-white">
             House for Rent in <span className="text-[#DE1A58]">Faridabad</span>
           </h2>
@@ -34,7 +34,7 @@ export default function Footer() {
           <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
             Discover premium rental homes and high-value residential opportunities across prime sectors of Faridabad.
           </p>
-        </div> */}
+        </div>
 
         {/* LOCATIONS */}
           <h3 className="text-lg font-semibold text-white mb-6">
