@@ -102,7 +102,7 @@ export default function PropertyCard({ property }) {
     className="w-1/2 bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
     text-white py-2.5 rounded-full
     hover:from-[#c4164c] hover:to-[#7a0c2f]
-    transition text-sm font-medium shadow-md cursor-pointer text-center"
+    transition text-sm font-medium shadow-md cursor-pointer text-center cursor-pointer"
   >
     Enquire Now
   </button>

@@ -144,7 +144,7 @@ const SidebarEnquiryForm = () => {
           className="w-full bg-gradient-to-r from-[#DE1A58] to-[#a10f3f] 
           text-white py-3 rounded-xl font-semibold 
           hover:from-[#c4164c] hover:to-[#7a0c2f] 
-          transition shadow-lg disabled:opacity-60"
+          transition shadow-lg disabled:opacity-60 cursor-pointer"
         >
           {loading ? "Submitting..." : "Request Call Back"}
         </button>
