@@ -40,7 +40,7 @@ keywords: [
     canonical: "https://www.houseforrentinfaridabad.com/",
   },
   verification: {
-    google: "E5Cv_41W3Z16pv3hqk-twbghqT0qgR7btFlmd-zcOWU",
+    google: "V84tIgiPehGnLX81Wzmjo92qvQTnYoL_SgXO44GoBU0",
   },
    icons: {
       icon: "/favicon.ico",
@@ -67,14 +67,14 @@ export default function RootLayout({ children }) {
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
               j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
               f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-KJ23TVKZ');
+              })(window,document,'script','dataLayer','GTM-TV6XR9RX');
             `,
           }}
         />
 
         {/* ✅ Google Analytics (GA4) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XP5YLVK2EE"
+          src="https://www.googletagmanager.com/gtag/js?id=G-"
           strategy="afterInteractive"
         />
         <Script id="ga-script" strategy="afterInteractive">
@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XP5YLVK2EE');
+            gtag('config', 'G-');
           `}
         </Script>
       </head>
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
         
  <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-GTM-KJ23TVKZ"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TV6XR9RX"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
