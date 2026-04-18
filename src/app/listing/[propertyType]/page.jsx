@@ -117,7 +117,7 @@ const bhk = propertyType?.split("-")[0];
       <div className="max-w-7xl mx-auto mb-12">
 
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-          {bhk} BHK Residential Houses For Rent in Faridabad
+          {bhk} BHK Houses For Rent in Faridabad
         </h1>
 
         <p className="mt-4 text-gray-500 max-w-2xl">
