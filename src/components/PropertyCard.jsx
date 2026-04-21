@@ -110,7 +110,10 @@ export default function PropertyCard({ property }) {
 
   {/* VIEW DETAILS */}
   <Link
-    href={`/properties/${property.slug}`}
+     href={`/properties/${property.slug}`}
+  onClick={() => {
+    localStorage.setItem("lastLocation", property.city);
+  }}
     className="w-1/2 border border-[#DE1A58] text-[#DE1A58]
     py-2.5 rounded-full text-sm font-medium
     hover:bg-pink-50 transition cursor-pointer text-center"
