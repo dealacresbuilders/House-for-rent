@@ -226,6 +226,17 @@ const handlePageChange = (page) => {
 
                       <Link
                         href={`/properties/${property.slug}`}
+  onClick={() => {
+    localStorage.setItem("lastLocation", property.city);
+
+    // 🔥 ONLY set if coming from listing page
+    if (window.location.pathname.includes("flat") || window.location.pathname.includes("listing")) {
+      localStorage.setItem("lastListing", window.location.pathname);
+    } else {
+      // 🔥 clear if coming from home or anywhere else
+      localStorage.removeItem("lastListing");
+    }
+  }}
                         className="border border-[#DE1A58] text-[#DE1A58] 
                         px-4 sm:px-6 py-2 rounded-full 
                         hover:bg-pink-50 
