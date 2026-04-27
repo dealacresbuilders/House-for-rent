@@ -99,9 +99,9 @@ const HeroSection = () => {
         <div className="md:col-span-5 lg:col-span-4">
           <div className="bg-white/5 backdrop-blur-2xl p-8 rounded-2xl border border-white/10 shadow-2xl text-white">
 
-            <h3 className="text-2xl font-semibold mb-2">
+            <h2 className="text-2xl font-semibold mb-2">
               Free Consultation
-            </h3>
+            </h2>
 
             <p className="text-sm mb-6 text-gray-400">
               Fill your details and our expert will contact you shortly.
