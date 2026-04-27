@@ -87,9 +87,9 @@ const handlePageChange = (page) => {
 
       {/* HEADING */}
       <div className="max-w-7xl mx-auto mb-10 sm:mb-12">
-        <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-900">
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-900">
           Premium Residential House For Rent Properties in Faridabad
-        </h1>
+        </h2>
 
         <p className="mt-3 sm:mt-4 text-gray-500 max-w-2xl text-sm sm:text-base">
           Explore high-potential shops and commercial spaces available for rent 
