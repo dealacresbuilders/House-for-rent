@@ -21,18 +21,35 @@ export default function Pagination({
       start = Math.max(1, end - maxVisible + 1);
     }
 
-    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    return Array.from(
+      { length: end - start + 1 },
+      (_, i) => start + i
+    );
   };
 
   const visiblePages = getVisiblePages();
 
+  // 🔥 COMMON PAGE CHANGE + AUTO SCROLL
   const handlePageChange = (page) => {
     onPageChange(page);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      const section =
+        document.getElementById("locations") ||
+        document.getElementById("property-section");
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -61,7 +78,9 @@ export default function Pagination({
           </button>
 
           {visiblePages[0] > 2 && (
-            <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">...</span>
+            <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">
+              ...
+            </span>
           )}
         </>
       )}
@@ -85,8 +104,11 @@ export default function Pagination({
       {/* LAST PAGE */}
       {visiblePages[visiblePages.length - 1] < totalPages && (
         <>
-          {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
-            <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">...</span>
+          {visiblePages[visiblePages.length - 1] <
+            totalPages - 1 && (
+            <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">
+              ...
+            </span>
           )}
 
           <button
@@ -109,7 +131,6 @@ export default function Pagination({
       >
         Next
       </button>
-
     </div>
   );
 }

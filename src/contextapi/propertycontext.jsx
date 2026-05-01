@@ -17,15 +17,16 @@ export const PropertyProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const lastFetchedDomain = useRef(null);
-
+const [page2,setPage2]=useState(1);
+  const limit=150;
+  const [totalItems,setTotalItems]=useState(0)
   const getPropertiesByDomain = async () => {
 
-    if (lastFetchedDomain.current === domain && properties.length > 0) {
-      return;
-    }
+    // if (lastFetchedDomain.current === domain && properties.length > 0) {
+    //   return;
+    // }
 
-    lastFetchedDomain.current = domain;
+    // lastFetchedDomain.current = domain;
 
     try {
 
@@ -33,14 +34,13 @@ export const PropertyProvider = ({ children }) => {
       setError(null);
 
       const res = await axios.get(
-        `https://deal-acres-backend.onrender.com/api/listed-properties/getPropertiesByDomain/${domain}`
+        `https://deal-acres-backend.onrender.com/api/listed-properties/getPropertiesByDomain/${domain}?page=${page2}&limit=${limit}`
       );
 
       setProperties(res.data?.data || []);
-
+setTotalItems(res.data?.total)
     } catch (err) {
 
-      lastFetchedDomain.current = null;
       setError("Something went wrong");
 
     } finally {
@@ -53,7 +53,7 @@ export const PropertyProvider = ({ children }) => {
 
   useEffect(() => {
     getPropertiesByDomain();
-  }, []);
+  }, [page2]);
 
   /* ================= BHK FILTER + PAGINATION ================= */
 
@@ -142,7 +142,7 @@ export const PropertyProvider = ({ children }) => {
         loading,
         error,
         refetch: getPropertiesByDomain,
-
+page2,setPage2,totalItems,itemsPerPage:limit,
         // BHK filter
         fetchPropertiesByType,
         loading3,
