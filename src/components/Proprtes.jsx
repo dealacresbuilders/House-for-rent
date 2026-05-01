@@ -10,12 +10,11 @@ import Pagination from "@/components/Pagination";
 import BHKFilterButtons from "@/components/BHKFilterButtons";
 import { useRef } from "react";
 export default function Properties() {
-  const { properties, loading, error } = useProperty();
+  const { properties, loading, error, page2, setPage2,
+    totalItems, itemsPerPage, } = useProperty();
   const [open, setOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState("");
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 150;
 const topRef = useRef(null);
   const formatArea = (area, unit) => {
     if (!area) return "N/A";
@@ -25,25 +24,6 @@ const topRef = useRef(null);
       unit.charAt(0).toUpperCase() + unit.slice(1).toLowerCase();
     return `${formattedNumber} ${formattedUnit}`;
   };
-
-  const totalItems = properties?.length || 0;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProperties = properties?.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
-
-const handlePageChange = (page) => {
-  setCurrentPage(page);
-
-  setTimeout(() => {
-    topRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }, 100);
-};
 
   if (loading) {
     return (
@@ -81,7 +61,7 @@ const handlePageChange = (page) => {
   }
 
   return (
-    <section  ref={topRef}
+    <section  
     id="locations"
      className="bg-[#fdf2f6] px-3 sm:px-4 py-12 sm:py-16">
 
@@ -108,7 +88,7 @@ const handlePageChange = (page) => {
         {/* LEFT */}
         <div className="lg:col-span-2 space-y-6 sm:space-y-8">
 
-          {currentProperties.map((property) => (
+          {properties.map((property) => (
             <div
               key={property._id}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition duration-300 overflow-hidden md:h-[250px]"
@@ -258,8 +238,8 @@ const handlePageChange = (page) => {
           <Pagination
             totalItems={totalItems}
             itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
+            currentPage={page2}
+            onPageChange={setPage2}
           />
 
         </div>
