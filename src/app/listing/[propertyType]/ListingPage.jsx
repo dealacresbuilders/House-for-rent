@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactPopup from "@/components/ContactPopup";
 import SidebarEnquiryForm from "@/components/SidebarEnquiryForm";
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/PaginationTwo";
 import BHKFilterButtons from "@/components/BHKFilterButtons";
 import Breadcrumb from "@/components/Breadcrumb";
 export default function PropertyTypePage() {
@@ -15,44 +15,49 @@ export default function PropertyTypePage() {
   const { propertyType } = useParams();
 
   const {
-    properties,
+   data2,
     loading3,
     error3,
     fetchPropertiesByType,
     page,
-    totalPages
+    setPage,
+    totalPages,type,setType
   } = useProperty();
+  console.log("PROPERTIES BY TYPE:", page,totalPages);
 
   const [open, setOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState("");
 
   const propertySectionRef = useRef(null);
 
-  /* ================= FETCH ================= */
-const bhk = propertyType?.split("-")[0];
+  /* ================= FETCH BY TYPE ================= */
+
+ const bhk = propertyType?.split("-")[0];
   useEffect(() => {
 
-    if (bhk) {
-      fetchPropertiesByType(`${bhk} BHK`, 1);
-    }
+  if (bhk) {
 
-  }, [bhk]);
+    setPage(1);
 
+    setType(`${bhk} BHK`);
 
-  /* ================= SCROLL TOP AFTER LOAD ================= */
+  }
 
+}, [bhk]);
+
+  /* ================= FORMAT AREA ================= */
   useEffect(() => {
+  if (!loading3 &&data2.length > 0) {
+    propertySectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+}, [data2]);
 
-    if (!loading3 && properties.length > 0) {
-
-      propertySectionRef.current?.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
-    }
-
-  }, [properties]);
+useEffect(() => {
+  localStorage.setItem("lastListing", window.location.pathname);
+}, []);
 
   useEffect(() => {
   localStorage.setItem("lastListing", window.location.pathname);
@@ -146,7 +151,7 @@ const bhk = propertyType?.split("-")[0];
 
         <div className="lg:col-span-2 space-y-8">
 
-          {properties.map((property)=>(
+          {data2.map((property)=>(
             
             <div
               key={property._id}
@@ -282,13 +287,9 @@ const bhk = propertyType?.split("-")[0];
           <div className="mt-16">
 
             <Pagination
-              currentPage={page}
-              totalPages={totalPages}
-              onPageChange={(newPage)=>{
-
-                fetchPropertiesByType(`${propertyType} BHK`,newPage);
-
-              }}
+           page={page}
+  totalPages={totalPages}
+  setPage={setPage}
             />
 
           </div>
