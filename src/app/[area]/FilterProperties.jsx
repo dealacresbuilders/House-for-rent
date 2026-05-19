@@ -121,19 +121,18 @@ export default function FilterProperties({ area }) {
 
               {/* IMAGE */}
               <div className="relative md:w-[45%] aspect-[4/3] md:aspect-auto overflow-hidden">
-                {property?.media?.url ? (
+                
                   <Image
-                    src={property.media.url}
+                   src={property?.media?.url ?
+                      property?.media?.url
+                      :"https://res.cloudinary.com/do84xjpmx/image/upload/v1778824611/faridabadProperties/egxss7fxugjkgg1bfdel.webp"
+                    }
                     unoptimized
                     alt={property.title}
                     fill
                     className="object-cover hover:scale-105 transition duration-500"
                   />
-                ) : (
-                  <div className="bg-pink-50 w-full h-full flex items-center justify-center text-[#DE1A58] text-sm">
-                    No Image
-                  </div>
-                )}
+              
               </div>
 
               {/* CONTENT */}

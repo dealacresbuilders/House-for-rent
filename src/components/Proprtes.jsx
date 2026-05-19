@@ -98,7 +98,10 @@ const topRef = useRef(null);
                 {/* IMAGE */}
                 <div className="relative w-full md:w-[45%] h-[250px] ">
                   <Image
-                    src={property?.media?.url || "/no-image.png"}
+                    src={property?.media?.url ?
+                      property?.media?.url
+                      :"https://res.cloudinary.com/do84xjpmx/image/upload/v1778824611/faridabadProperties/egxss7fxugjkgg1bfdel.webp"
+                    }
                     unoptimized
                     alt={property.title}
                     width={600}
