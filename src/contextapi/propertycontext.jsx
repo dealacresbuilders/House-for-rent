@@ -21,13 +21,6 @@ const [page2,setPage2]=useState(1);
   const limit=150;
   const [totalItems,setTotalItems]=useState(0)
   const getPropertiesByDomain = async () => {
-
-    // if (lastFetchedDomain.current === domain && properties.length > 0) {
-    //   return;
-    // }
-
-    // lastFetchedDomain.current = domain;
-
     try {
 
       setLoading(true);
