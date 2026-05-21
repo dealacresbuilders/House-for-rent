@@ -234,10 +234,8 @@ export default function FilterProperties({ area }) {
                     {/* VIEW DETAILS */}
                     <Link
                             href={`/properties/${property.slug}`}
-                        onClick={() => {
-                        localStorage.setItem("lastLocation", property.city);
-                              localStorage.setItem("lastListing", window.location.pathname)}}
-                      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer"
+                        
+                      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer pointer-events-none"
                     >
                       View Details →
                     </Link>
