@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import toast from "react-hot-toast"
+import AlertPopup from "@/components/AlertPopup"
 
 export default function Page() {
   const [formData, setFormData] = useState({
@@ -13,10 +13,19 @@ export default function Page() {
 
   const [loading, setLoading] = useState(false)
 
-  const website =
-    typeof window !== "undefined"
-      ? window.location.hostname.replace("www.", "")
-      : ""
+  const [popup, setPopup] = useState({
+    open: false,
+    type: "success",
+    message: "",
+  })
+
+  const showPopup = (type, message) => {
+    setPopup({
+      open: true,
+      type,
+      message,
+    })
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -26,14 +35,17 @@ export default function Page() {
       if (value.length > 10) return
     }
 
-    setFormData({ ...formData, [name]: value })
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (formData.phone.length !== 10) {
-      toast.error("Phone number must be 10 digits")
+      showPopup("error", "Phone number must be 10 digits")
       return
     }
 
@@ -42,151 +54,212 @@ export default function Page() {
     try {
       const res = await fetch("/api/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           ...formData,
-          website,
+          website: "houseforrentinfaridabad.com",
         }),
       })
 
       const result = await res.json()
 
       if (result.success) {
-        toast.success("Your inquiry has been submitted!")
-        setFormData({ name: "", phone: "", message: "" })
+        showPopup(
+          "success",
+          "Your inquiry has been submitted!"
+        )
+
+        setFormData({
+          name: "",
+          phone: "",
+          message: "",
+        })
       } else {
-        toast.error("Something went wrong. Please try again.")
+        showPopup(
+          "error",
+          "Something went wrong. Please try again."
+        )
       }
     } catch (err) {
-      toast.error("Server error. Please try later.")
+      showPopup(
+        "error",
+        "Server error. Please try later."
+      )
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <section className="bg-gradient-to-b from-white to-pink-50 py-20 px-4 sm:px-6">
+    <>
+      <section className="bg-gradient-to-b from-white to-pink-50 py-20 px-4 sm:px-6">
 
-      <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto">
 
-        {/* ================= HEADING ================= */}
-        <div className="text-center mb-16">
-          <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
-            Let’s Discuss Your{" "}
-            <span className="text-[#DE1A58]">
-              Property Goals
-            </span>
-          </h1>
-          <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-            Whether you are buying, selling, or investing in commercial real estate,
-            our experts are here to guide you with trusted advice.
-          </p>
-          <div className="w-20 h-1 bg-[#DE1A58] mx-auto mt-6 rounded-full"></div>
-        </div>
+          {/* ================= HEADING ================= */}
+          <div className="text-center mb-16">
 
-        {/* ================= FORM + IMAGE ================= */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
+              Let’s Discuss Your{" "}
+              <span className="text-[#DE1A58]">
+                Property Goals
+              </span>
+            </h1>
 
-          {/* ===== FORM CARD ===== */}
-          <div className="bg-white border border-pink-100 
-          rounded-3xl p-10 shadow-xl hover:shadow-2xl transition duration-500">
-
-            <h2 className="text-2xl font-semibold mb-2 text-gray-900">
-              Register Your Interest
-            </h2>
-
-            <p className="text-gray-500 mb-8 text-sm">
-              Fill in your details and our consultant will contact you shortly.
+            <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+              Whether you are buying, selling, or investing in commercial real estate,
+              our experts are here to guide you with trusted advice.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="w-20 h-1 bg-[#DE1A58] mx-auto mt-6 rounded-full"></div>
 
-              {/* NAME */}
-              <div>
-                <label className="text-sm text-gray-600">Full Name*</label>
-                <input
-                  name="name"
-                  required
-                  placeholder="Enter your full name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="mt-2 w-full px-4 py-3 rounded-xl bg-pink-50
-                  border border-pink-200 text-gray-900
-                  focus:ring-2 focus:ring-[#DE1A58] outline-none transition"
-                />
-              </div>
+          </div>
 
-              {/* PHONE */}
-              <div>
-                <label className="text-sm text-gray-600">Phone*</label>
-                <input
-                  name="phone"
-                  required
-                  inputMode="numeric"
-                  placeholder="+91 XXXXX XXXXX"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="mt-2 w-full px-4 py-3 rounded-xl bg-pink-50
-                  border border-pink-200 text-gray-900
-                  focus:ring-2 focus:ring-[#DE1A58] outline-none transition"
-                />
-              </div>
+          {/* ================= FORM + IMAGE ================= */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-              {/* MESSAGE */}
-              <div>
-                <label className="text-sm text-gray-600">Message</label>
-                <textarea
-                  rows={4}
-                  name="message"
-                  placeholder="Tell us about your property requirements..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="mt-2 w-full px-4 py-3 rounded-xl bg-pink-50
-                  border border-pink-200 text-gray-900
-                  focus:ring-2 focus:ring-[#DE1A58] outline-none resize-none transition"
-                />
-              </div>
+            {/* ===== FORM CARD ===== */}
+            <div
+              className="bg-white border border-pink-100
+              rounded-3xl p-10 shadow-xl
+              hover:shadow-2xl transition duration-500"
+            >
 
-              {/* BUTTON */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3 rounded-full font-semibold
-                bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
-                hover:from-[#c4164c] hover:to-[#7a0c2f]
-                text-white transition shadow-lg"
+              <h2 className="text-2xl font-semibold mb-2 text-gray-900">
+                Register Your Interest
+              </h2>
+
+              <p className="text-gray-500 mb-8 text-sm">
+                Fill in your details and our consultant will contact you shortly.
+              </p>
+
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
               >
-                {loading ? "Submitting..." : "Submit Inquiry"}
-              </button>
 
-            </form>
+                {/* NAME */}
+                <div>
+                  <label className="text-sm text-gray-600">
+                    Full Name*
+                  </label>
+
+                  <input
+                    name="name"
+                    required
+                    placeholder="Enter your full name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="mt-2 w-full px-4 py-3 rounded-xl bg-pink-50
+                    border border-pink-200 text-gray-900
+                    focus:ring-2 focus:ring-[#DE1A58]
+                    outline-none transition"
+                  />
+                </div>
+
+                {/* PHONE */}
+                <div>
+                  <label className="text-sm text-gray-600">
+                    Phone*
+                  </label>
+
+                  <input
+                    name="phone"
+                    required
+                    inputMode="numeric"
+                    placeholder="+91 XXXXX XXXXX"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="mt-2 w-full px-4 py-3 rounded-xl bg-pink-50
+                    border border-pink-200 text-gray-900
+                    focus:ring-2 focus:ring-[#DE1A58]
+                    outline-none transition"
+                  />
+                </div>
+
+                {/* MESSAGE */}
+                <div>
+                  <label className="text-sm text-gray-600">
+                    Message
+                  </label>
+
+                  <textarea
+                    rows={4}
+                    name="message"
+                    placeholder="Tell us about your property requirements..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="mt-2 w-full px-4 py-3 rounded-xl bg-pink-50
+                    border border-pink-200 text-gray-900
+                    focus:ring-2 focus:ring-[#DE1A58]
+                    outline-none resize-none transition"
+                  />
+                </div>
+
+                {/* BUTTON */}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3 rounded-full font-semibold
+                  bg-gradient-to-r from-[#DE1A58] to-[#a10f3f]
+                  hover:from-[#c4164c] hover:to-[#7a0c2f]
+                  text-white transition shadow-lg"
+                >
+                  {loading
+                    ? "Submitting..."
+                    : "Submit Inquiry"}
+                </button>
+
+              </form>
+
+            </div>
+
+            {/* ===== IMAGE SIDE ===== */}
+            <div className="relative h-[520px] rounded-3xl overflow-hidden border border-pink-100 shadow-xl">
+
+              <Image
+                src="https://images.presentationgo.com/2025/06/business-partnership-handshake.jpg"
+                alt="Contact Real Estate"
+                fill
+                className="object-cover"
+                priority
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+            </div>
+
           </div>
 
-          {/* ===== IMAGE SIDE ===== */}
-          <div className="relative h-[520px] rounded-3xl overflow-hidden border border-pink-100 shadow-xl">
-            <Image
-              src="https://images.presentationgo.com/2025/06/business-partnership-handshake.jpg"
-              alt="Contact Real Estate"
-              fill
-              className="object-cover"
-              priority
+          {/* ================= MAP ================= */}
+          <div className="mt-24 rounded-3xl overflow-hidden border border-pink-100 shadow-xl">
+
+            <iframe
+              title="Office Location"
+              src="https://www.google.com/maps?q=29.134042,75.740044&z=18&output=embed"
+              className="w-full h-[500px] border-0"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
           </div>
 
         </div>
 
-        {/* ================= MAP ================= */}
-        <div className="mt-24 rounded-3xl overflow-hidden border border-pink-100 shadow-xl">
-          <iframe
-            title="Office Location"
-            src="https://www.google.com/maps?q=29.134042,75.740044&z=18&output=embed"
-            className="w-full h-[500px] border-0"
-            loading="lazy"
-          />
-        </div>
+      </section>
 
-      </div>
-    </section>
+      <AlertPopup
+        open={popup.open}
+        type={popup.type}
+        message={popup.message}
+        onClose={() =>
+          setPopup((prev) => ({
+            ...prev,
+            open: false,
+          }))
+        }
+      />
+    </>
   )
 }
