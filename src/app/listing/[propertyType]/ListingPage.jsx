@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  Fragment
+} from "react";
 import { useParams } from "next/navigation";
 import { useProperty } from "@/contextapi/propertycontext";
 import Image from "next/image";
@@ -10,6 +16,7 @@ import SidebarEnquiryForm from "@/components/SidebarEnquiryForm";
 import Pagination from "@/components/PaginationTwo";
 import BHKFilterButtons from "@/components/BHKFilterButtons";
 import Breadcrumb from "@/components/Breadcrumb";
+import FeaturedLocations from "@/components/FeaturedLocations";
 export default function PropertyTypePage() {
 
   const { propertyType } = useParams();
@@ -81,6 +88,16 @@ useEffect(() => {
 
   };
 
+  const localities = useMemo(() => {
+  return [
+    ...new Set(
+      data2
+        ?.map((item) => item?.locality)
+        .filter(Boolean)
+    ),
+  ];
+}, [data2]);
+
 
   /* ================= LOADING ================= */
 
@@ -151,7 +168,21 @@ useEffect(() => {
 
         <div className="lg:col-span-2 space-y-8">
 
-          {data2.map((property)=>(
+          {data2.map((property, index) => {
+
+const featuredPosition =
+  Math.floor(index / 30);
+
+const locationBatch =
+  (index + 1) % 30 === 0
+    ? localities.slice(
+        featuredPosition * 10,
+        featuredPosition * 10 + 10
+      )
+    : [];
+
+return (
+<Fragment key={property._id}>
             
             <div
               key={property._id}
@@ -280,9 +311,18 @@ useEffect(() => {
 
               </div>
 
-            </div>
+           </div>
 
-          ))}
+{locationBatch.length > 0 && (
+  <FeaturedLocations
+    locations={locationBatch}
+  />
+)}
+
+</Fragment>
+
+);
+})}
 
 
           {/* PAGINATION */}
