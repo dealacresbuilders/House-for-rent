@@ -1,8 +1,13 @@
 "use client";
+import Breadcrumb from "@/components/Breadcrumb";
+
 
 export default function HouseRentHero() {
   return (
     <section className="w-full bg-[#fdf2f6] py-8 px-6 md:px-16 relative overflow-hidden">
+    <div className="mb-6 flex justify-center">
+   <Breadcrumb />
+  </div>
 
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#DE1A58]/10 rounded-full blur-3xl"></div>

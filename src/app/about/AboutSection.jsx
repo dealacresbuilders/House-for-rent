@@ -1,4 +1,5 @@
 "use client";
+import Breadcrumb from "@/components/Breadcrumb";
 
 import Link from "next/link";
 
@@ -6,6 +7,9 @@ export default function AboutPage() {
   return (
     <section className="bg-gradient-to-b from-white to-pink-50 px-4 py-12">
       <div className="max-w-7xl mx-auto">
+      <div className="flex justify-start">
+   <Breadcrumb />
+  </div>
 
         {/* ================= HERO ================= */}
         <div className="grid md:grid-cols-2 gap-16 items-center mb-28">
