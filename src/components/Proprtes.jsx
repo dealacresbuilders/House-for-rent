@@ -233,7 +233,7 @@ const topRef = useRef(null);
 
                    <Link
   href={`/properties/${property.slug}`}
-  className="pointer-events-none border border-[#DE1A58] 
+  className=" border border-[#DE1A58] 
   text-[#DE1A58] 
   px-4 sm:px-6 py-2 rounded-full 
   hover:bg-pink-50 

@@ -298,7 +298,7 @@ return (
 
                       <Link
                         href={`/properties/${property.slug}`}
-                        className="border border-[#a10f3f] text-[#a10f3f] px-6 py-2 rounded-full hover:bg-orange-50 transition text-center pointer-events-none"
+                        className="border border-[#a10f3f] text-[#a10f3f] px-6 py-2 rounded-full hover:bg-orange-50 transition text-center"
                       >
                         View Details
                       </Link>

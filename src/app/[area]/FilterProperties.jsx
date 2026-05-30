@@ -265,7 +265,7 @@ return (
                     <Link
                             href={`/properties/${property.slug}`}
                         
-                      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer pointer-events-none"
+                      className="text-[#DE1A58] text-sm font-medium hover:underline cursor-pointer"
                     >
                       View Details →
                     </Link>
