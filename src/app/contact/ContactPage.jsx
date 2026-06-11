@@ -242,11 +242,11 @@ export default function Page() {
           <div className="mt-24 rounded-3xl overflow-hidden border border-pink-100 shadow-xl">
 
             <iframe
-              title="Office Location"
-              src="https://www.google.com/maps?q=29.134042,75.740044&z=18&output=embed"
-              className="w-full h-[500px] border-0"
-              loading="lazy"
-            />
+  title="Faridabad Location"
+  src="https://www.google.com/maps?q=Faridabad,Haryana&z=12&output=embed"
+  className="w-full h-[500px] border-0"
+  loading="lazy"
+/>
 
           </div>
 
