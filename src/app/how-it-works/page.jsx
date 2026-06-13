@@ -12,6 +12,10 @@ export const metadata = {
   keywords: [
     "how to rent house in Faridabad", "house renting process Faridabad", "rental home steps Faridabad", "house booking on rent Faridabad", "rental guide Faridabad", "rent independent house Faridabad", "no brokerage house rent Faridabad", "verified rental homes Faridabad", "rent agreement Faridabad", "easy house rental Faridabad"
   ],
+  alternates: {
+    canonical:
+      "https://www.houseforrentinfaridabad.com/how-it-works",
+  },
 };
 
 export default function Page() {
