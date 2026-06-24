@@ -12,7 +12,7 @@ import { useRef } from "react";
 import FeaturedLocations from "./FeaturedLocations";
 export default function Properties() {
   const { properties, loading, error, page2, setPage2,
-    totalItems, itemsPerPage, } = useProperty();
+    totalItems, itemsPerPage, areas} = useProperty();
   const [open, setOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState("");
 
@@ -100,11 +100,10 @@ const topRef = useRef(null);
         <div className="lg:col-span-2 space-y-6 sm:space-y-8">
 
          {properties.map((property, index) => {
-            const locationBatch =
-              localities.slice(
-                Math.floor(index / 30) * 10,
-                Math.floor(index / 30) * 10 + 10
-              );
+           const areaBatch = areas?.slice(
+  Math.floor(index / 30) * 10,
+  Math.floor(index / 30) * 10 + 10
+) || [];
 
             return (
               <div
@@ -253,9 +252,9 @@ const topRef = useRef(null);
           {/* FEATURED */}
 
                 {(index + 1) % 30 === 0 &&
-                  locationBatch.length > 0 && (
+                  areaBatch.length > 0 && (
                     <FeaturedLocations
-                      locations={locationBatch}
+                      locations={areaBatch}
                     />
                 )}
 
