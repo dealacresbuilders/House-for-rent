@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-
 import { locations } from "../data/locations";
 
 // ✅ CLEAN SLUG
@@ -11,144 +10,232 @@ const createSlug = (location) => {
     .replace(", Faridabad", "")
     .toLowerCase()
     .replace(/,/g, "")
-    .replace(/\s+/g, "-");
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
 };
 
 export default function Footer() {
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCounts, setVisibleCounts] = useState({});
 
-  const initialCount = 50;
-  const visibleLocations = showAll
-    ? locations
-    : locations.slice(0, initialCount);
+  useEffect(() => {
+    const counts = {};
+
+    locations.forEach((item) => {
+      const key = Object.keys(item)[0];
+      counts[key] = 15;
+    });
+
+    setVisibleCounts(counts);
+  }, []);
+
+  const handleViewMore = (type) => {
+    setVisibleCounts((prev) => ({
+      ...prev,
+      [type]: prev[type] + 15,
+    }));
+  };
+
+  const handleViewLess = (type) => {
+    setVisibleCounts((prev) => ({
+      ...prev,
+      [type]: 15,
+    }));
+  };
+
+  const getRentLabel = (bhkType) => {
+    switch (bhkType.toLowerCase()) {
+      case "1 bhk":
+        return "1 BHK House For Rent in";
+
+      case "2 bhk":
+        return "2 BHK House For Rent in";
+
+      case "3 bhk":
+        return "3 BHK House For Rent in";
+
+      case "4 bhk":
+        return "4 BHK House For Rent in";
+
+      default:
+        return "House For Rent in";
+    }
+  };
+
+  const getRentUrl = (bhkType, location) => {
+    switch (bhkType.toLowerCase()) {
+      case "1 bhk":
+        return `https://www.dealacres.com/properties/1-bhk-house-for-rent-in-${createSlug(
+          location
+        )}-faridabad`;
+
+      case "2 bhk":
+        return `https://www.dealacres.com/properties/2-bhk-house-for-rent-in-${createSlug(
+          location
+        )}-faridabad`;
+
+      case "3 bhk":
+        return `https://www.dealacres.com/properties/3-bhk-house-for-rent-in-${createSlug(
+          location
+        )}-faridabad`;
+
+      case "4 bhk":
+        return `https://www.dealacres.com/properties/4-bhk-house-for-rent-in-${createSlug(
+          location
+        )}-faridabad`;
+
+      default:
+        return `https://www.dealacres.com/properties/house-for-rent-in-${createSlug(
+          location
+        )}-faridabad`;
+    }
+  };
 
   return (
     <footer className="bg-[#0f0f1a] pt-16 pb-8 px-4 border-t border-[#1c1c2b]">
       <div className="max-w-7xl mx-auto">
 
+        {/* Heading */}
         <div className="mb-10">
           <h2 className="text-2xl font-bold text-white">
-            House for Rent in <span className="text-[#DE1A58]">Faridabad</span>
+            House for Rent in{" "}
+            <span className="text-[#DE1A58]">Faridabad</span>
           </h2>
 
           <p className="text-gray-400 mt-4 max-w-2xl leading-relaxed">
-            Discover premium rental homes and high-value residential opportunities across prime sectors of Faridabad.
+            Discover premium rental homes and high-value residential
+            opportunities across prime sectors of Faridabad.
           </p>
         </div>
 
-        {/* LOCATIONS */}
-          <h3 className="text-lg font-semibold text-white mb-6">
-            Popular Locations
-          </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4 text-sm overflow-visible">
-          {visibleLocations.map((loc, index) => (
-            <div key={index} className="relative group overflow-visible">
+        {/* BHK Sections */}
+        {locations.map((item, index) => {
+          const bhkType = Object.keys(item)[0];
+          const bhkLocations = item[bhkType];
 
-              <Link
-  key={index}
-  href={`https://www.dealacres.com/properties/house-for-rent-in-${createSlug(loc)}-faridabad`}
-  target="_blank"
-  rel="noopener noreferrer"                 className="block truncate text-gray-400 hover:text-[#DE1A58] transition duration-300"
-              >
-                House For Rent {loc}
-              </Link>
+          return (
+            <div key={index} className="mb-12">
+              <h3 className="text-lg font-semibold text-white mb-6">
+                Popular Locations for{" "}
+                {bhkType.replace("bhk", " BHK").toUpperCase()} House for Rent
+              </h3>
 
-              <div
-                className="
-                absolute left-1/2 -translate-x-1/2 bottom-full mb-2
-                opacity-0 scale-95
-                group-hover:opacity-100 group-hover:scale-100
-                transition-all duration-200
-                whitespace-nowrap
-                bg-[#1a1333] text-white text-xs
-                px-3 py-1.5 rounded-md
-                shadow-lg border border-[#DE1A58]/40
-                z-[9999]
-                pointer-events-none
-              "
-              >
-                House For Rent {loc}
+              <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4 text-sm overflow-visible">
+
+                {bhkLocations
+                  .slice(0, visibleCounts[bhkType] || 15)
+                  .map((loc, idx) => (
+                    <div
+                      key={idx}
+                      className="relative group overflow-visible"
+                    >
+                      <Link
+                        href={getRentUrl(bhkType, loc)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block truncate text-gray-400 hover:text-[#DE1A58] transition duration-300"
+                      >
+                        {getRentLabel(bhkType)} {loc}
+                      </Link>
+
+                      <div
+                        className="
+                          absolute left-1/2 -translate-x-1/2 bottom-full mb-2
+                          opacity-0 scale-95
+                          group-hover:opacity-100 group-hover:scale-100
+                          transition-all duration-200
+                          whitespace-nowrap
+                          bg-[#1a1333]
+                          text-white text-xs
+                          px-3 py-1.5 rounded-md
+                          shadow-lg
+                          border border-[#DE1A58]/40
+                          z-[9999]
+                          pointer-events-none
+                        "
+                      >
+                        {getRentLabel(bhkType)} {loc}
+                      </div>
+                    </div>
+                  ))}
               </div>
 
-            </div>
-          ))}
+              {/* View More / Less */}
+              <div className="mt-4 flex gap-4">
+                {(visibleCounts[bhkType] || 15) <
+                  bhkLocations.length && (
+                  <button
+                    onClick={() => handleViewMore(bhkType)}
+                    className="text-[#DE1A58] hover:underline"
+                  >
+                    View More...
+                  </button>
+                )}
 
-          {!showAll && locations.length > initialCount && (
-            <div>
-              <span
-                onClick={() => setShowAll(true)}
-                className="block cursor-pointer text-[#DE1A58] hover:underline"
+                {(visibleCounts[bhkType] || 15) > 15 && (
+                  <button
+                    onClick={() => handleViewLess(bhkType)}
+                    className="text-[#DE1A58] hover:underline"
+                  >
+                    View Less...
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Bottom Navigation */}
+        <div className="border-t border-[#1c1c2b] pt-6 mt-10 mb-6">
+          <div className="flex justify-center items-center">
+            <div className="flex flex-wrap gap-6 justify-center text-sm">
+              <Link
+                href="/about"
+                className="text-gray-400 hover:text-[#DE1A58] transition"
               >
-                Read More...
-              </span>
-            </div>
-          )}
+                About
+              </Link>
 
-          {showAll && locations.length > initialCount && (
-            <div>
-              <span
-                onClick={() => setShowAll(false)}
-                className="block cursor-pointer text-[#DE1A58] hover:underline"
+              <Link
+                href="/blog"
+                className="text-gray-400 hover:text-[#DE1A58] transition"
               >
-                Read Less...
-              </span>
-            </div>
-          )}
+                Blog
+              </Link>
 
+              <Link
+                href="/contact"
+                className="text-gray-400 hover:text-[#DE1A58] transition"
+              >
+                Contact
+              </Link>
+
+              <Link
+                href="/how-it-works"
+                className="text-gray-400 hover:text-[#DE1A58] transition"
+              >
+                How It's Work
+              </Link>
+            </div>
+          </div>
         </div>
-{/* 🔥 Bottom Navigation Buttons - CENTER */}
-<div className="border-t border-[#1c1c2b] pt-6 mt-10 mb-6">
-  <div className="flex justify-center items-center">
-    
-    <div className="flex flex-wrap gap-6 justify-center text-sm">
-      <Link
-        href="/about"
-        className="text-gray-400 hover:text-[#DE1A58] transition"
-      >
-        About
-      </Link>
 
-      <Link
-        href="/blog"
-        className="text-gray-400 hover:text-[#DE1A58] transition"
-      >
-        Blog
-      </Link>
-
-      <Link
-        href="/contact"
-        className="text-gray-400 hover:text-[#DE1A58] transition"
-      >
-        Contact
-      </Link>
-
-      <Link
-        href="/how-it-works"
-        className="text-gray-400 hover:text-[#DE1A58] transition"
-      >
-        How It's Work
-      </Link>
-    </div>
-
-  </div>
-</div>
-        {/* BOTTOM */}
+        {/* Footer Bottom */}
         <div className="border-t border-[#1c1c2b] pt-6 flex flex-col md:flex-row items-center justify-between mt-10">
           <p className="text-sm text-gray-500 text-center md:text-left">
             © {new Date().getFullYear()} HouseForRentInFaridabad.com - All rights reserved.
           </p>
 
-         <p className="text-sm text-gray-500 mt-3 md:mt-0">
-  Designed By - {" "}
-  <Link
-    href="https://www.parcharmanch.com/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="hover:text-[#DE1A58] transition cursor-pointer underline-offset-4 hover:underline"
-  >
-    Parchar Manch
-  </Link>
-</p>
+          <p className="text-sm text-gray-500 mt-3 md:mt-0">
+            Designed By -{" "}
+            <Link
+              href="https://www.parcharmanch.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#DE1A58] transition cursor-pointer underline-offset-4 hover:underline"
+            >
+              Parchar Manch
+            </Link>
+          </p>
         </div>
 
       </div>
