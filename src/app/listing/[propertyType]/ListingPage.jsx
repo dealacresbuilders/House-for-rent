@@ -17,6 +17,7 @@ import Pagination from "@/components/PaginationTwo";
 import BHKFilterButtons from "@/components/BHKFilterButtons";
 import Breadcrumb from "@/components/Breadcrumb";
 import FeaturedLocations from "@/components/FeaturedLocations";
+import PropertyBottomLinks from "@/components/PropertyBottomLinks";
 export default function PropertyTypePage() {
 
   const { propertyType } = useParams();
@@ -28,7 +29,8 @@ export default function PropertyTypePage() {
     fetchPropertiesByType,
     page,
     setPage,
-    totalPages,type,setType
+    totalPages,type,setType,
+    areas
   } = useProperty();
   console.log("PROPERTIES BY TYPE:", page,totalPages);
 
@@ -170,28 +172,22 @@ useEffect(() => {
 
           {data2.map((property, index) => {
 
-const featuredPosition =
-  Math.floor(index / 30);
-
-const locationBatch =
-  (index + 1) % 30 === 0
-    ? localities.slice(
-        featuredPosition * 10,
-        featuredPosition * 10 + 10
-      )
-    : [];
+  const areaBatch = areas?.slice(
+              Math.floor(index / 30) * 10,
+              Math.floor(index / 30) * 10 + 10
+            ) || [];
 
 return (
 <Fragment key={property._id}>
             
             <div
               key={property._id}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden md:h-[250px]"
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 overflow-hidden md:h-[270px]"
             >
 
               <div className="flex flex-col md:flex-row h-full">
 
-                <div className="relative md:w-[45%] h-[250px]">
+                <div className="relative md:w-[45%] h-[250px] md:h-full">
 
                   <Image
                     src={property?.media?.url ?
@@ -304,8 +300,12 @@ return (
                       </Link>
 
                     </div>
-
                   </div>
+                       <PropertyBottomLinks
+  propertyType={property.propertyType}
+  city="faridabad"
+  color="#a10f3f"
+/>
 
                 </div>
 
@@ -313,11 +313,12 @@ return (
 
            </div>
 
-{locationBatch.length > 0 && (
-  <FeaturedLocations
-    locations={locationBatch}
-  />
-)}
+ {(index + 1) % 30 === 0 &&
+                  areaBatch.length > 0 && (
+                    <FeaturedLocations
+                      locations={areaBatch}
+                    />
+                  )}
 
 </Fragment>
 
