@@ -12,6 +12,10 @@ export const metadata = {
     canonical:
       "https://www.houseforrentinfaridabad.com/about",
   },
+   robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function Page() {
