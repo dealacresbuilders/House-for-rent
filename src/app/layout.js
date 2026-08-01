@@ -33,6 +33,10 @@ keywords: [
   verification: {
     google: "V84tIgiPehGnLX81Wzmjo92qvQTnYoL_SgXO44GoBU0",
   },
+   robots: {
+    index: true,
+    follow: true,
+  },
    icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",

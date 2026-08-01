@@ -12,6 +12,10 @@ export async function generateMetadata() {
     alternates: {
       canonical: "www.houseforrentinfaridabad.com/blog", // 🔥 apna final domain yaha set kar dena
     },
+     robots: {
+    index: true,
+    follow: true,
+  },
   };
 }
 
