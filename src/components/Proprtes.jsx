@@ -11,6 +11,7 @@ import BHKFilterButtons from "@/components/BHKFilterButtons";
 import { useRef } from "react";
 import FeaturedLocations from "./FeaturedLocations";
 import PropertyBottomLinks from "@/components/PropertyBottomLinks";
+import PropertyViewButton from "./PropertyViewButton";
 export default function Properties() {
   const { properties, loading, error, page2, setPage2,
     totalItems, itemsPerPage, areas} = useProperty();
@@ -231,17 +232,12 @@ const topRef = useRef(null);
                         Enquire Now
                       </button>
 
-                   <Link
-  href={`/properties/${property.slug}`}
-  className=" border border-[#DE1A58] 
+<PropertyViewButton slug={property.slug}  className=" border border-[#DE1A58] 
   text-[#DE1A58] 
   px-4 sm:px-6 py-2 rounded-full 
   hover:bg-pink-50 
   transition w-full md:w-auto 
-  text-center font-medium text-sm"
->
-  View Details
-</Link>
+  text-center font-medium text-sm"/>
 
                     </div>
 
