@@ -64,29 +64,34 @@ export default function Footer() {
   const getRentUrl = (bhkType, location) => {
     switch (bhkType.toLowerCase()) {
       case "1 bhk":
-        return `https://www.dealacres.com/properties/1-bhk-house-for-rent-in-${createSlug(
+        return "#"
+/* original: `https://www.dealacres.com/properties/1-bhk-house-for-rent-in-${createSlug(
           location
-        )}-faridabad`;
+        )}-faridabad` */;
 
       case "2 bhk":
-        return `https://www.dealacres.com/properties/2-bhk-house-for-rent-in-${createSlug(
+        return "#"
+/* original: `https://www.dealacres.com/properties/2-bhk-house-for-rent-in-${createSlug(
           location
-        )}-faridabad`;
+        )}-faridabad` */;
 
       case "3 bhk":
-        return `https://www.dealacres.com/properties/3-bhk-house-for-rent-in-${createSlug(
+        return "#"
+/* original: `https://www.dealacres.com/properties/3-bhk-house-for-rent-in-${createSlug(
           location
-        )}-faridabad`;
+        )}-faridabad` */;
 
       case "4 bhk":
-        return `https://www.dealacres.com/properties/4-bhk-house-for-rent-in-${createSlug(
+        return "#"
+/* original: `https://www.dealacres.com/properties/4-bhk-house-for-rent-in-${createSlug(
           location
-        )}-faridabad`;
+        )}-faridabad` */;
 
       default:
-        return `https://www.dealacres.com/properties/house-for-rent-in-${createSlug(
+        return "#"
+/* original: `https://www.dealacres.com/properties/house-for-rent-in-${createSlug(
           location
-        )}-faridabad`;
+        )}-faridabad` */;
     }
   };
 
