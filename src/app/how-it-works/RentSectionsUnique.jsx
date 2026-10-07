@@ -17,7 +17,7 @@ export default function RentSectionsUnique() {
             <li>Every listing is real and verified</li>
             <li>You can directly connect with the owner (no middleman)</li>
             <li>You can list your property with free property listing</li>
-            <li>We work with a trusted partner, Deal Acres, to improve property reach and trust</li>
+            <li>We work with a trusted partner, RGR Group, to improve property reach and trust</li>
           </ul>
 
           <p className="mt-2">
@@ -238,7 +238,7 @@ export default function RentSectionsUnique() {
     },
 
     {
-      title: "Free Listing + Deal Acres Partnership",
+      title: "Free Listing + RGR Group Partnership",
       content: (
         <>
           <p>One of the biggest advantages is free property listing.</p>
@@ -246,7 +246,7 @@ export default function RentSectionsUnique() {
           <ul className="list-disc pl-5 mt-2">
             <li>Owners can list property without any cost</li>
             <li>More listings mean more choices</li>
-            <li>Better visibility through Deal Acres partnership</li>
+            <li>Better visibility through RGR Group partnership</li>
           </ul>
 
           <p className="mt-2">
@@ -415,7 +415,7 @@ export default function RentSectionsUnique() {
           </ul>
 
           <p className="mt-2">
-            With Deal Acres partnership, sellers get better visibility and reach.
+            With RGR Group partnership, sellers get better visibility and reach.
           </p>
         </>
       ),
